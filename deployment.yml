@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-website
+     
+spec:
+  template:
+    metadata:
+      name: my-website
+      labels:
+        app: my-website
+        
+    spec:
+      containers:
+       - name: httpd-container
+         image: nadaalaa/website:latest
+         imagePullPolicy: IfNotPresent
+         ports:
+           - containerPort: 80
+  replicas: 3
+ 
+  selector:
+    matchLabels:
+      app: my-website
+    
